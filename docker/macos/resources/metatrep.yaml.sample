@@ -1,0 +1,14 @@
+# MetaTREP configuration file
+default_base_repo: 'https://github.com/trep'
+default_branch: master
+cmake_args: '-DREADLINE_ROOT=/usr/local/opt/portable-readline -DREADLINE_INCLUDE_DIR=/usr/local/opt/portable-readline/include -DREADLINE_LIBRARY=/usr/local/opt/libedit/lib/libedit.dylib -DICU_ROOT=/usr/local/opt/icu4c -DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=ON -DENABLE_TEST:BOOL=ON -DRUN_GCOV:BOOL=OFF -DLIB_SUFFIX=64'
+publish_path: /tmp/metatrep
+components:
+  - name: opentrep
+    repo: 'https://github.com/trep/opentrep.git'
+    branch: trunk
+    deps: [opentraveldata]
+  - name: opentraveldata
+    repo: 'https://github.com/trep/opentraveldata-wrapper.git'
+    deps: {}
+
