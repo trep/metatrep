@@ -15,7 +15,7 @@ end
   'components',
   'default_branch',
   'default_base_repo',
-  'cmake_args',
+  'default_cmake_args',
   'publish_path'
 ].each do |param|
   raise "Missing mandatory parameter '#{param}' in configuration file." unless CONF[param]
@@ -88,6 +88,11 @@ def component_repo(cmp)
   component(cmp).fetch('repo', "#{CONF_DEFAULT_BASE_REPO}/#{cmp}.git")
 end
 
+# Lookup the CMake arguments of a component
+def component_cmake_args(cmp)
+  component(cmp).fetch('cmake_args', CONF_DEFAULT_CMAKE_ARGS)
+end
+
 # Lookup the CMake variables of a component
 def lookup_cmake_vars(cmp) 
   cmp_src_path = component_src_path cmp
@@ -140,19 +145,21 @@ task :info do
     cmp_repo = component_repo cmp
     cmp_branch = component_branch cmp
     cmp_version = component_version cmp
+    cmp_cmake_args = component_cmake_args cmp
     cmp_libpath = component_libpath cmp
     puts " * #{cmp}"
     puts "   Git repository   : #{cmp_repo}"
     puts "   Checkout branch  : #{cmp_branch}"
+    puts "   Version          : #{cmp_version}"
     puts "   Depends on       : #{cmp_deps.join ', '}" unless cmp_deps.empty?
     puts "   Source cloned at : #{component_src_path cmp}"
     puts "   Built from       : #{component_build_path cmp}"
+    puts "   CMake build args : #{cmp_cmake_args}"
     puts "   Installed to     : #{component_install_path cmp}"
     puts "   Library path     : #{cmp_libpath}"
     puts "   Release version  : #{cmp_version}" if cmp_version
     puts
   end
-  puts "CMake arguments : #{CONF_CMAKE_ARGS}"
   puts "Publish to      : #{CONF_PUBLISH_PATH}"
 end
 
@@ -181,6 +188,7 @@ COMPONENTS.each do |cmp|
   cmp_src_path = component_src_path cmp
   cmp_build_path = component_build_path cmp
   cmp_install_path = component_install_path cmp
+  cmp_cmake_args = component_cmake_args cmp
   cmp_makefile = component_makefile cmp
    
   # Clone tasks
@@ -225,7 +233,7 @@ COMPONENTS.each do |cmp|
   file cmp_makefile => config_prereqs do
     mkdir_p cmp_build_path
     ::Dir.chdir(cmp_build_path) do
-      do_shell "#{CMAKE_BIN} #{cmake_deps_args} #{CONF_CMAKE_ARGS} -DCMAKE_INSTALL_PREFIX=#{cmp_install_path} #{cmp_src_path}"
+      do_shell "#{CMAKE_BIN} -DCMAKE_INSTALL_PREFIX=#{cmp_install_path} #{cmake_deps_args} #{cmp_cmake_args} #{cmp_src_path}"
     end
   end
   desc "Configure component #{cmp} in #{cmp_build_path}"
