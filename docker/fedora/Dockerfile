@@ -8,8 +8,8 @@ MAINTAINER Denis Arnaud <denis.arnaud_github at m4x dot org>
 # Docker build time environment variables
 ENV container docker
 ENV HOME /home/build
-ENV LANGUAGE en_US:en
-ENV LANG en_US.UTF-8
+ENV LANGUAGE C:en
+ENV LANG C.UTF-8
 ENV LC_ALL $LANG
 ENV TREP_DIR $HOME/dev/geo/opentrep-meta
 
@@ -26,7 +26,8 @@ RUN dnf -y update && \
     boost-python3-devel xapian-core-devel \
     soci-mysql-devel soci-sqlite3-devel readline-devel \
     sqlite-devel mariadb-devel libicu-devel \
-    protobuf-devel protobuf-compiler
+    protobuf-devel protobuf-compiler \
+    rubygem-rake
 
 # Create the `build` user (for the development activities)
 RUN adduser build

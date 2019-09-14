@@ -206,6 +206,8 @@ $ docker build -t opentrep/metatrep:debian --squash docker/debian/
 $ docker push opentrep/metatrep:debian
 $ docker build -t opentrep/metatrep:ubuntu --squash docker/ubuntu/
 $ docker push opentrep/metatrep:ubuntu
+$ docker build -t opentrep/metatrep:fedora --squash docker/fedora/
+$ docker push opentrep/metatrep:fedora
 $ docker images | grep "^trep"
 REPOSITORY           TAG          IMAGE ID        CREATED             SIZE
 opentrep/metatrep    centos       9a33eee22a3d    About an hour ago   2.16GB
