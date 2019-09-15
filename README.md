@@ -18,6 +18,7 @@ ready-to-develop, ready-to-contribute environment. Enjoy!
 
 # References
 * Open Travel REquest Parser (OpenTREP):
+  + Doc: https://github.com/trep/opentrep/blob/trunk/README.md
   + Source code on GitHub: https://github.com/trep
   + Docker Cloud repository: https://cloud.docker.com/u/opentrep/repository/docker/opentrep/metatrep
   + Web applications:
@@ -52,6 +53,10 @@ You would typically start the `Dockerfile` with
 ## Installation of dependencies (if not using the Docker image)
 C++, Python and Ruby are needed in order to build
 and run the various components of that project.
+[OpenTREP README](https://github.com/trep/opentrep/blob/trunk/README.md)
+explains how to install the dependencies (_e.g._, Python, Boost, SOCI)
+on various Linux distributions and MacOS. Refer to that documentation
+for further details.
 
 ## Docker images
 The [maintained Docker images for that project](docker/)
@@ -59,6 +64,8 @@ come with all the necessary pieces of software. They can either be used
 _as is_, or used as inspiration for _ad hoc_ setup on other configurations.
 
 ## Native environment (outside of Docker)
+Refer to the [OpenTREP README](https://github.com/trep/opentrep/blob/trunk/README.md)
+for further details.
 
 ### CentOS/RedHat
 * Install [EPEL for CentOS/RedHat](https://fedoraproject.org/wiki/EPEL):
@@ -213,4 +220,20 @@ REPOSITORY           TAG          IMAGE ID        CREATED             SIZE
 opentrep/metatrep    centos       9a33eee22a3d    About an hour ago   2.16GB
 ```
 
+# Usage
+
+```bash
+$ ./workspace/install/opentrep/bin/opentrep-indexer -p workspace/install/opentraveldata/share/opentraveldata/data/por/optd_por_public_all.csv -t sqlite
+$ ./workspace/install/opentrep/bin/opentrep-searcher -q "nce sfo"
+Deployment number 0
+Xapian database filepath is: /tmp/opentrep/xapian_traveldb0
+SQL database type is: nodb
+Log filename is: opentrep-searcher.log
+The type of search is: 0
+The spelling error distance is: 3
+The travel query string is: nce sfo
+2 (geographical) location(s) have been found matching your query (`nce sfo'). 0 words were left unmatched.
+ [1]: NCE-A-6299418, 8.16788%, Nice Côte d'Azur International Airport, Nice Cote d'Azur International Airport, LFMN, , FRNCE, , 0, 1970-Jan-01, 2999-Dec-31, , NCE|2990440|Nice|Nice, PAC, FR, , France, 427, France, EUR, NA, Europe, 43.6584, 7.21587, S, AIRP, 93, Provence-Alpes-Côte d'Azur, Provence-Alpes-Cote d'Azur, 06, Alpes-Maritimes, Alpes-Maritimes, 062, 06088, 0, 3, 5, Europe/Paris, 1, 2, 1, 2018-Dec-05, , https://en.wikipedia.org/wiki/Nice_C%C3%B4te_d%27Azur_Airport, nce, nce, 8984.66%, 0, 0; name matrix {ar,مطار نيس الريفيرا الفرنسي,de,Flughafen Nizza,en,Nice Côte d'Azur International Airport,en,Nice Airport,es,Niza Aeropuerto,fa,فرودگاه نیس کوت دازور,fr,Aéroport de Nice Côte d'Azur,ja,コート・ダジュール空港,ko,니스 코트다쥐르 공항,ru,Аэропорт Ницца Лазурный Берег,sv,Nice flygplats,wuu,尼斯蓝色海岸机场}
+ [2]: SFO-C-5391959, 32.496%, San Francisco, San Francisco, , , USSFO, , 0, 1970-Jan-01, 2999-Dec-31, , SFO|5391959|San Francisco|San Francisco, CA, US, , United States, 91, California, USD, NA, North America, 37.7749, -122.419, P, PPLA2, CA, California, California, 075, City and County of San Francisco, City and County of San Francisco, Z, , 864816, 16, 28, America/Los_Angeles, -8, -7, -8, 2019-Sep-05, SFO, https://en.wikipedia.org/wiki/San_Francisco, sfo, sfo, 35745.6%, 0, 0; name matrix {,San Fransisco,,Yerba Buena,,New Albion,abbr,SF,af,San Francisco,ar,سان فرانسيسكو,arz,سان فرانسيسكو,ast,San Francisco,az,San-Fransisko,be,Сан-Францыска,bg,Сан Франциско,bn,সান ফ্রান্সিস্কো,bo,སན་ཧྥུ་རན་སིས་ཁོ,bpy,সান ফ্রান্সিসকো কাউন্টি,bs,San Francisco,ca,San Francisco,ce,Сан-Франциско,ckb,سان فرانسیسکۆ,cs,San Francisco,cv,Сан-Франциско,cy,San Francisco,da,San Francisco,de,San Francisco,el,Σαν Φρανσίσκο,en,San Francisco,en,Frisco,eo,San-Francisko,eo,Sanfrancisko,eo,San Francisco,es,San Francisco,et,San Francisco,eu,San Frantzisko,ext,San Franciscu,fa,سان فرانسیسکو,fi,San Francisco,fr,San Francisco,fy,San Fransisko,ga,San Francisco,gan,舊金山,gd,San Francisco,gl,San Francisco,hak,Khiu-kîm-sân,haw,Kapalakiko,hbs,San Francisco,he,סן פרנסיסקו,hi,सैन फ्रांसिस्को,hu,San Francisco,hy,Սան Ֆրանցիսկո,id,San Francisco,is,San Francisco,it,San Francisco,ja,サンフランシスコ,ka,სან-ფრანცისკო,kk,Сан Франсиско,ko,샌프란시스코,ko,샌프란,krc,Сан-Франциско,la,Franciscopolis,lt,San Fransiskas,lv,Sanfrancisko,mhr,Сан-Франциско,mk,Сан Франциско,ml,സാൻ ഫ്രാൻസിസ്കോ,mn,Сан-Франциско,mr,सॅन फ्रान्सिस्को,my,ဆန်ဖရန်စစ္စကိုမြို့,nds,San Francisco,new,स्यान फ्रान्सिस्को,nl,San Francisco,nn,San Francisco,no,San Francisco,os,Сан-Франциско,pa,ਸੈਨ ਫਰਾਂਸਿਸਕੋ,pl,San Francisco,pnb,سان فرانسسکو,post,94102,post,94103,post,94104,post,94105,post,94107,post,94108,post,94109,post,94110,post,94111,post,94112,post,94114,post,94115,post,94116,post,94117,post,94118,post,94119,post,94120,post,94121,post,94122,post,94123,post,94124,post,94125,post,94126,post,94127,post,94129,post,94130,post,94131,post,94132,post,94133,post,94134,post,94137,post,94139,post,94140,post,94141,post,94142,post,94143,post,94144,post,94145,post,94146,post,94147,post,94151,post,94159,post,94160,post,94161,post,94163,post,94164,post,94172,post,94177,post,94188,pt,São Francisco,ro,San Francisco,ro,Сан Франциско,ru,Сан-Франциско,sah,Сан Франсиско,scn,San Franciscu,si,සැන් ෆ්‍රැන්සිස්කෝ,sk,San Francisco,sl,San Francisco,sq,San Francisco,sr,Сан Франциско,sv,San Francisco,ta,சான் பிரான்சிஸ்கோ,te,శాన్ ఫ్రాన్సిస్కో,th,ซานฟรานซิสโก,tl,San Francisco,tl,Lungsod ng San Francisco,tr,San Francisco,tt,Сан-Франциско,ug,San Fransisko,uk,Сан-Франціско,uk,Сан-Франциско,ur,سان فرانسسکو,uz,San Fransisko,vep,San Francisko,vi,San Francisco,wuu,旧金山,xmf,სან-ფრანცისკო,yi,סאן פראנציסקא,yue,三藩市,zh,旧金山,zh-CN,旧金山}
+```
 
