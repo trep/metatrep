@@ -4,12 +4,11 @@ default_branch: master
 default_cmake_args: ''
 publish_path: /tmp/metatrep
 components:
-  - name: opentrep
-    repo: 'https://github.com/trep/opentrep.git'
-    branch: trunk
-    cmake_args: '-DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=ON -DENABLE_TEST:BOOL=ON -DRUN_GCOV:BOOL=OFF'
-    deps: [opentraveldata]
   - name: opentraveldata
     repo: 'https://github.com/trep/opentraveldata-wrapper.git'
+    deps: [opentrep]
+  - name: opentrep
+    repo: 'https://github.com/trep/opentrep.git'
+    cmake_args: '-DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=ON -DENABLE_TEST:BOOL=ON -DRUN_GCOV:BOOL=OFF'
     deps: {}
 
